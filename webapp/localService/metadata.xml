@@ -1,0 +1,183 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZEP_ODS_SCANNING_SRV" xml:lang="en" sap:schema-version="0">
+            <EntityType Name="Reservation" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ObjectId"/>
+                    <PropertyRef Name="ReservationNr"/>
+                    <PropertyRef Name="Application"/>
+                </Key>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="ObjectId"/>
+                <Property Name="ReservationNr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Reservation"/>
+                <Property Name="Application" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Application"/>
+                <NavigationProperty Name="NavReservationToReservationItem" Relationship="ZEP_ODS_SCANNING_SRV.AsReservationToReservationItem" FromRole="FromRole_AsReservationToReservationItem" ToRole="ToRole_AsReservationToReservationItem"/>
+            </EntityType>
+            <EntityType Name="ObjectReturn" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Type"/>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="Number"/>
+                    <PropertyRef Name="Message"/>
+                    <PropertyRef Name="ObjectId"/>
+                    <PropertyRef Name="Application"/>
+                </Key>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Message type"/>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Message Class"/>
+                <Property Name="Number" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Message Number"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220" sap:label="Message text"/>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="ObjectId"/>
+                <Property Name="Application" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Application"/>
+            </EntityType>
+            <EntityType Name="MaterialReturn" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MaterialId"/>
+                    <PropertyRef Name="ObjectId"/>
+                    <PropertyRef Name="Type"/>
+                    <PropertyRef Name="Id"/>
+                    <PropertyRef Name="Number"/>
+                    <PropertyRef Name="Message"/>
+                </Key>
+                <Property Name="MaterialId" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Material"/>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Object"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Message type"/>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="20" sap:label="Message Class"/>
+                <Property Name="Number" Type="Edm.String" Nullable="false" MaxLength="3" sap:label="Message Number"/>
+                <Property Name="Message" Type="Edm.String" Nullable="false" MaxLength="220" sap:label="Message text"/>
+            </EntityType>
+            <EntityType Name="Object" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ObjectId"/>
+                    <PropertyRef Name="Application"/>
+                </Key>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Object"/>
+                <Property Name="Application" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Application"/>
+                <Property Name="ObjectType" Type="Edm.String" MaxLength="60" sap:label="Object Type"/>
+                <Property Name="ObjectDescr1" Type="Edm.String" MaxLength="60" sap:label="Fiori Scanning: Object Description"/>
+                <Property Name="ObjectDescr2" Type="Edm.String" MaxLength="60" sap:label="Fiori Scanning: Object Description"/>
+                <NavigationProperty Name="NavObjectToReservation" Relationship="ZEP_ODS_SCANNING_SRV.AsObjectToReservation" FromRole="FromRole_AsObjectToReservation" ToRole="ToRole_AsObjectToReservation"/>
+                <NavigationProperty Name="NavObjectToReturn" Relationship="ZEP_ODS_SCANNING_SRV.AsObjectToReturn" FromRole="FromRole_AsObjectToReturn" ToRole="ToRole_AsObjectToReturn"/>
+            </EntityType>
+            <EntityType Name="ReservationItem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Application"/>
+                    <PropertyRef Name="ObjectId"/>
+                    <PropertyRef Name="ReservationNr"/>
+                    <PropertyRef Name="ReservationItemNr"/>
+                    <PropertyRef Name="ObjectType"/>
+                </Key>
+                <Property Name="Application" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Application"/>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Object"/>
+                <Property Name="ReservationNr" Type="Edm.String" Nullable="false" MaxLength="10" sap:label="Reservation"/>
+                <Property Name="ReservationItemNr" Type="Edm.String" Nullable="false" MaxLength="4" sap:label="Item"/>
+                <Property Name="ObjectType" Type="Edm.String" Nullable="false" MaxLength="1" sap:label="Record type"/>
+                <Property Name="Material" Type="Edm.String" MaxLength="18" sap:label="Material"/>
+                <Property Name="Plant" Type="Edm.String" MaxLength="4" sap:label="Plant"/>
+                <Property Name="StorageLoc" Type="Edm.String" MaxLength="4" sap:label="Stor. Location"/>
+                <Property Name="ProdSupplyArea" Type="Edm.String" MaxLength="10" sap:label="Supply Area"/>
+                <Property Name="Batch" Type="Edm.String" MaxLength="10" sap:label="Batch"/>
+                <Property Name="ReqQuantity" Type="Edm.Decimal" Precision="13" Scale="3" sap:unit="Uom" sap:label="Reqmt Qty"/>
+                <Property Name="Uom" Type="Edm.String" MaxLength="3" sap:label="Base Unit" sap:semantics="unit-of-measure"/>
+            </EntityType>
+            <EntityType Name="Material" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MaterialId"/>
+                    <PropertyRef Name="ObjectId"/>
+                </Key>
+                <Property Name="MaterialId" Type="Edm.String" Nullable="false" MaxLength="18" sap:label="Material"/>
+                <Property Name="ObjectId" Type="Edm.String" Nullable="false" MaxLength="12" sap:label="Object"/>
+                <Property Name="Description" Type="Edm.String" MaxLength="40" sap:label="Description"/>
+                <NavigationProperty Name="NavMaterialToReturn" Relationship="ZEP_ODS_SCANNING_SRV.AsMaterialToReturn" FromRole="FromRole_AsMaterialToReturn" ToRole="ToRole_AsMaterialToReturn"/>
+            </EntityType>
+            <Association Name="AsMaterialToReturn" sap:content-version="1">
+                <End Type="ZEP_ODS_SCANNING_SRV.Material" Multiplicity="0..1" Role="FromRole_AsMaterialToReturn"/>
+                <End Type="ZEP_ODS_SCANNING_SRV.MaterialReturn" Multiplicity="*" Role="ToRole_AsMaterialToReturn"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_AsMaterialToReturn">
+                        <PropertyRef Name="MaterialId"/>
+                        <PropertyRef Name="ObjectId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_AsMaterialToReturn">
+                        <PropertyRef Name="MaterialId"/>
+                        <PropertyRef Name="ObjectId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="AsReservationToReservationItem" sap:content-version="1">
+                <End Type="ZEP_ODS_SCANNING_SRV.Reservation" Multiplicity="0..1" Role="FromRole_AsReservationToReservationItem"/>
+                <End Type="ZEP_ODS_SCANNING_SRV.ReservationItem" Multiplicity="*" Role="ToRole_AsReservationToReservationItem"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_AsReservationToReservationItem">
+                        <PropertyRef Name="ReservationNr"/>
+                        <PropertyRef Name="Application"/>
+                        <PropertyRef Name="ObjectId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_AsReservationToReservationItem">
+                        <PropertyRef Name="ReservationNr"/>
+                        <PropertyRef Name="Application"/>
+                        <PropertyRef Name="ObjectId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="AsObjectToReturn" sap:content-version="1">
+                <End Type="ZEP_ODS_SCANNING_SRV.Object" Multiplicity="0..1" Role="FromRole_AsObjectToReturn"/>
+                <End Type="ZEP_ODS_SCANNING_SRV.ObjectReturn" Multiplicity="*" Role="ToRole_AsObjectToReturn"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_AsObjectToReturn">
+                        <PropertyRef Name="Application"/>
+                        <PropertyRef Name="ObjectId"/>
+                    </Principal>
+                    <Dependent Role="ToRole_AsObjectToReturn">
+                        <PropertyRef Name="Application"/>
+                        <PropertyRef Name="ObjectId"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="AsObjectToReservation" sap:content-version="1">
+                <End Type="ZEP_ODS_SCANNING_SRV.Object" Multiplicity="0..1" Role="FromRole_AsObjectToReservation"/>
+                <End Type="ZEP_ODS_SCANNING_SRV.Reservation" Multiplicity="*" Role="ToRole_AsObjectToReservation"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_AsObjectToReservation">
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="Application"/>
+                    </Principal>
+                    <Dependent Role="ToRole_AsObjectToReservation">
+                        <PropertyRef Name="ObjectId"/>
+                        <PropertyRef Name="Application"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="ZEP_ODS_SCANNING_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json">
+                <EntitySet Name="ReservationSet" EntityType="ZEP_ODS_SCANNING_SRV.Reservation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ObjectReturnSet" EntityType="ZEP_ODS_SCANNING_SRV.ObjectReturn" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialReturnSet" EntityType="ZEP_ODS_SCANNING_SRV.MaterialReturn" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ObjectSet" EntityType="ZEP_ODS_SCANNING_SRV.Object" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ReservationItemSet" EntityType="ZEP_ODS_SCANNING_SRV.ReservationItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="MaterialSet" EntityType="ZEP_ODS_SCANNING_SRV.Material" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <AssociationSet Name="AsObjectToReturnSet" Association="ZEP_ODS_SCANNING_SRV.AsObjectToReturn" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ObjectSet" Role="FromRole_AsObjectToReturn"/>
+                    <End EntitySet="ObjectReturnSet" Role="ToRole_AsObjectToReturn"/>
+                </AssociationSet>
+                <AssociationSet Name="AsMaterialToReturnSet" Association="ZEP_ODS_SCANNING_SRV.AsMaterialToReturn" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="MaterialSet" Role="FromRole_AsMaterialToReturn"/>
+                    <End EntitySet="MaterialReturnSet" Role="ToRole_AsMaterialToReturn"/>
+                </AssociationSet>
+                <AssociationSet Name="AsReservationToReservationItemSet" Association="ZEP_ODS_SCANNING_SRV.AsReservationToReservationItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ReservationSet" Role="FromRole_AsReservationToReservationItem"/>
+                    <End EntitySet="ReservationItemSet" Role="ToRole_AsReservationToReservationItem"/>
+                </AssociationSet>
+                <AssociationSet Name="AsObjectToReservationSet" Association="ZEP_ODS_SCANNING_SRV.AsObjectToReservation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ObjectSet" Role="FromRole_AsObjectToReservation"/>
+                    <End EntitySet="ReservationSet" Role="ToRole_AsObjectToReservation"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZEP_ODS_SCANNING_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZEP_ODS_SCANNING_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>
