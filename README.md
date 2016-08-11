@@ -1,2 +1,2 @@
 # test
-is a new test
+is a new test too
