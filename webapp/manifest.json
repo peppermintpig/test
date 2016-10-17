@@ -18,11 +18,19 @@
 					"odataVersion": "2.0",
 					"localUri": "localService/metadata.xml"
 				}
+			},
+			"ZEP_ODATA_FIORI_SCANNING_SRV": {
+				"uri": "/sap/opu/odata/sap/ZEP_ODATA_FIORI_SCANNING_SRV/",
+				"type": "OData",
+				"settings": {
+					"odataVersion": "2.0",
+					"localUri": "webapp/localService/ZEP_ODATA_FIORI_SCANNING_SRV/metadata.xml"
+				}
 			}
 		},
 		"sourceTemplate": {
-			"id": "sap.ui.ui5-template-plugin.2masterdetail",
-			"version": "1.36.2"
+			"id": "servicecatalog.connectivityComponent",
+			"version": "0.0.0"
 		}
 	},
 	"sap.ui": {

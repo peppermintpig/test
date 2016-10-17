@@ -39,6 +39,11 @@
       "templateId": "sap.ui.ui5-template-plugin.2masterdetail",
       "templateVersion": "1.36.2",
       "dateTimeStamp": "Thu, 11 Aug 2016 12:15:39 GMT"
+    },
+    {
+      "templateId": "servicecatalog.connectivityComponent",
+      "templateVersion": "0.0.0",
+      "dateTimeStamp": "Mon, 03 Oct 2016 12:06:42 GMT"
     }
   ],
   "codeCheckingTriggers": {
@@ -55,7 +60,7 @@
     "resourceModelName": "i18n"
   },
   "mockpreview": {
-    "mockUri": "/sap/opu/odata/sap/ZEP_ODS_SCANNING_SRV/",
+    "mockUri": "/sap/opu/odata/sap/ZEP_ODATA_FIORI_SCANNING_SRV",
     "metadataFilePath": "localService/metadata.xml",
     "loadJSONFiles": false,
     "loadCustomRequests": false,

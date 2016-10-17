@@ -1,0 +1,221 @@
+<edmx:Edmx
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx"
+    xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData" Version="1.0">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema
+            xmlns="http://schemas.microsoft.com/ado/2008/09/edm" Namespace="ZEP_ODATA_FIORI_SCANNING_SRV" xml:lang="en" sap:schema-version="0">
+            <EntityType Name="Consumption" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ConsumptionID"/>
+                </Key>
+                <Property Name="ConsumptionID" Type="Edm.String" Nullable="false"/>
+                <Property Name="ConsumptionTypeID" Type="Edm.String" Nullable="false"/>
+                <Property Name="MaxItems" Type="Edm.Int32"/>
+                <Property Name="SupportsReservation" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="AllowNewItems" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="CreationDate" Type="Edm.DateTime" Nullable="false" Precision="0" sap:label="Time Stamp"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="ConsumptionStatusID" Type="Edm.String" Nullable="false"/>
+                <Property Name="ConsumptionModID" Type="Edm.String"/>
+                <NavigationProperty Name="ConsumptionItemSet" Relationship="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionConsumptionItem" FromRole="FromRole_ConsumptionConsumptionItem" ToRole="ToRole_ConsumptionConsumptionItem"/>
+                <NavigationProperty Name="ConsumptionType" Relationship="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionConsumptionType" FromRole="FromRole_ConsumptionConsumptionType" ToRole="ToRole_ConsumptionConsumptionType"/>
+                <NavigationProperty Name="ConsumptionStatus" Relationship="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionConsumptionStatus" FromRole="FromRole_ConsumptionConsumptionStatus" ToRole="ToRole_ConsumptionConsumptionStatus"/>
+                <NavigationProperty Name="ConsumptionMode" Relationship="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionConsumptionMode" FromRole="FromRole_ConsumptionConsumptionMode" ToRole="ToRole_ConsumptionConsumptionMode"/>
+            </EntityType>
+            <EntityType Name="ConsumptionItem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ConsumptionID"/>
+                    <PropertyRef Name="ConsumptionItemsID"/>
+                </Key>
+                <Property Name="ConsumptionID" Type="Edm.String" Nullable="false"/>
+                <Property Name="ConsumptionItemsID" Type="Edm.String" Nullable="false"/>
+                <Property Name="MaterialID" Type="Edm.String"/>
+                <Property Name="PlantID" Type="Edm.String"/>
+                <Property Name="Batch" Type="Edm.String"/>
+                <Property Name="StorageLocationID" Type="Edm.String"/>
+                <Property Name="RemainingQuantity" Type="Edm.Decimal" Precision="31" Scale="0"/>
+                <Property Name="RequestedQuantity" Type="Edm.Decimal" Precision="31" Scale="0"/>
+                <Property Name="UnitOfMeasure" Type="Edm.String"/>
+                <Property Name="IsReserved" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="ConsumptionItemOperationSet" Type="Edm.String" Nullable="false"/>
+                <Property Name="FixedBin" Type="Edm.String"/>
+                <NavigationProperty Name="Material" Relationship="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItemMaterial" FromRole="FromRole_ConsumptionItemMaterial" ToRole="ToRole_ConsumptionItemMaterial"/>
+                <NavigationProperty Name="StorageLocation" Relationship="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItemStorageLocation" FromRole="FromRole_ConsumptionItemStorageLocation" ToRole="ToRole_ConsumptionItemStorageLocation"/>
+                <NavigationProperty Name="Plant" Relationship="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItemPlant" FromRole="FromRole_ConsumptionItemPlant" ToRole="ToRole_ConsumptionItemPlant"/>
+                <NavigationProperty Name="ConsumptionItemOperation" Relationship="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItemConsumptionItemOperation" FromRole="FromRole_ConsumptionItemConsumptionItemOperation" ToRole="ToRole_ConsumptionItemConsumptionItemOperation"/>
+            </EntityType>
+            <EntityType Name="UserInfo" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="UserInfoID"/>
+                </Key>
+                <Property Name="IsNormalUser" Type="Edm.Boolean" Nullable="false"/>
+                <Property Name="EnvironmentDescription" Type="Edm.String"/>
+                <Property Name="DefaultBatch" Type="Edm.String"/>
+                <Property Name="DefaultStorageLocationID" Type="Edm.String"/>
+                <Property Name="DefaultPlantID" Type="Edm.String"/>
+                <Property Name="ConsumptionMode" Type="Edm.String"/>
+                <Property Name="UserInfoID" Type="Edm.String" Nullable="false"/>
+                <Property Name="UserName" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="Material" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="MaterialID"/>
+                </Key>
+                <Property Name="UnitOfMeasure" Type="Edm.String"/>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="MaterialID" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="ConsumptionStatus" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ConsumptionStatusID"/>
+                </Key>
+                <Property Name="ConsumptionStatusID" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="ConsumptionType" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ConsumptionTypeID"/>
+                </Key>
+                <Property Name="ConsumptionTypeID" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="ConsumptionItemOperation" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ConsumptionItemOperationID"/>
+                </Key>
+                <Property Name="ConsumptionItemOperationID" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="StorageLocation" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="StorageLocationID"/>
+                    <PropertyRef Name="PlantID"/>
+                </Key>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="StorageLocationID" Type="Edm.String" Nullable="false"/>
+                <Property Name="PlantID" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="Plant" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="PlantID"/>
+                </Key>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="PlantID" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <EntityType Name="ObjectIdentifier" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ObjectIdentifierID"/>
+                </Key>
+                <Property Name="Description" Type="Edm.String"/>
+                <Property Name="Type" Type="Edm.String"/>
+                <Property Name="ObjectIdentifierID" Type="Edm.String" Nullable="false"/>
+                <NavigationProperty Name="ObjectIdentifierPropertySet" Relationship="ZEP_ODATA_FIORI_SCANNING_SRV.ObjectIdentifierObjectIdentifierProperty" FromRole="FromRole_ObjectIdentifierObjectIdentifierProperty" ToRole="ToRole_ObjectIdentifierObjectIdentifierProperty"/>
+            </EntityType>
+            <EntityType Name="ObjectIdentifierProperty" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ObjectIdentifierID"/>
+                    <PropertyRef Name="ObjectIdentifierPropertyID"/>
+                </Key>
+                <Property Name="Name" Type="Edm.String"/>
+                <Property Name="ObjectIdentifierID" Type="Edm.String" Nullable="false"/>
+                <Property Name="ObjectIdentifierPropertyID" Type="Edm.String" Nullable="false"/>
+                <Property Name="Value" Type="Edm.String"/>
+                <Property Name="Label" Type="Edm.String"/>
+            </EntityType>
+            <EntityType Name="ConsumptionMode" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ConsumptionModeID"/>
+                </Key>
+                <Property Name="ConsumptionModeID" Type="Edm.String" Nullable="false"/>
+            </EntityType>
+            <Association Name="ConsumptionItemMaterial" sap:content-version="1">
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItem" Multiplicity="1" Role="FromRole_ConsumptionItemMaterial"/>
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.Material" Multiplicity="0..1" Role="ToRole_ConsumptionItemMaterial"/>
+            </Association>
+            <Association Name="ConsumptionItemStorageLocation" sap:content-version="1">
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItem" Multiplicity="1" Role="FromRole_ConsumptionItemStorageLocation"/>
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.StorageLocation" Multiplicity="0..1" Role="ToRole_ConsumptionItemStorageLocation"/>
+            </Association>
+            <Association Name="ConsumptionItemPlant" sap:content-version="1">
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItem" Multiplicity="1" Role="FromRole_ConsumptionItemPlant"/>
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.Plant" Multiplicity="0..1" Role="ToRole_ConsumptionItemPlant"/>
+            </Association>
+            <Association Name="ConsumptionItemConsumptionItemOperation" sap:content-version="1">
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItem" Multiplicity="1" Role="FromRole_ConsumptionItemConsumptionItemOperation"/>
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItemOperation" Multiplicity="1" Role="ToRole_ConsumptionItemConsumptionItemOperation"/>
+            </Association>
+            <Association Name="ConsumptionConsumptionType" sap:content-version="1">
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.Consumption" Multiplicity="1" Role="FromRole_ConsumptionConsumptionType"/>
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionType" Multiplicity="1" Role="ToRole_ConsumptionConsumptionType"/>
+            </Association>
+            <Association Name="ConsumptionConsumptionStatus" sap:content-version="1">
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.Consumption" Multiplicity="1" Role="FromRole_ConsumptionConsumptionStatus"/>
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionStatus" Multiplicity="1" Role="ToRole_ConsumptionConsumptionStatus"/>
+            </Association>
+            <Association Name="ConsumptionConsumptionMode" sap:content-version="1">
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.Consumption" Multiplicity="1" Role="FromRole_ConsumptionConsumptionMode"/>
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionMode" Multiplicity="1" Role="ToRole_ConsumptionConsumptionMode"/>
+            </Association>
+            <Association Name="ConsumptionConsumptionItem" sap:content-version="1">
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.Consumption" Multiplicity="1" Role="FromRole_ConsumptionConsumptionItem"/>
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItem" Multiplicity="*" Role="ToRole_ConsumptionConsumptionItem"/>
+            </Association>
+            <Association Name="ObjectIdentifierObjectIdentifierProperty" sap:content-version="1">
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.ObjectIdentifier" Multiplicity="1" Role="FromRole_ObjectIdentifierObjectIdentifierProperty"/>
+                <End Type="ZEP_ODATA_FIORI_SCANNING_SRV.ObjectIdentifierProperty" Multiplicity="*" Role="ToRole_ObjectIdentifierObjectIdentifierProperty"/>
+            </Association>
+            <EntityContainer Name="ZEP_ODATA_FIORI_SCANNING_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json">
+                <EntitySet Name="ConsumptionSet" EntityType="ZEP_ODATA_FIORI_SCANNING_SRV.Consumption" sap:content-version="1"/>
+                <EntitySet Name="ConsumptionItemSet" EntityType="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItem" sap:content-version="1"/>
+                <EntitySet Name="UserInfoSet" EntityType="ZEP_ODATA_FIORI_SCANNING_SRV.UserInfo" sap:content-version="1"/>
+                <EntitySet Name="MaterialSet" EntityType="ZEP_ODATA_FIORI_SCANNING_SRV.Material" sap:content-version="1"/>
+                <EntitySet Name="ConsumptionStatusSet" EntityType="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionStatus" sap:content-version="1"/>
+                <EntitySet Name="ConsumptionTypeSet" EntityType="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionType" sap:content-version="1"/>
+                <EntitySet Name="ConsumptionItemOperationSet" EntityType="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItemOperation" sap:content-version="1"/>
+                <EntitySet Name="StorageLocationSet" EntityType="ZEP_ODATA_FIORI_SCANNING_SRV.StorageLocation" sap:content-version="1"/>
+                <EntitySet Name="PlantSet" EntityType="ZEP_ODATA_FIORI_SCANNING_SRV.Plant" sap:content-version="1"/>
+                <EntitySet Name="ObjectIdentifierSet" EntityType="ZEP_ODATA_FIORI_SCANNING_SRV.ObjectIdentifier" sap:content-version="1"/>
+                <EntitySet Name="ObjectIdentifierPropertySet" EntityType="ZEP_ODATA_FIORI_SCANNING_SRV.ObjectIdentifierProperty" sap:content-version="1"/>
+                <EntitySet Name="ConsumptionModeSet" EntityType="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionMode" sap:content-version="1"/>
+                <AssociationSet Name="ConsumptionConsumptionTypeSet" Association="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionConsumptionType" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ConsumptionSet" Role="FromRole_ConsumptionConsumptionType"/>
+                    <End EntitySet="ConsumptionTypeSet" Role="ToRole_ConsumptionConsumptionType"/>
+                </AssociationSet>
+                <AssociationSet Name="ObjectIdentifierObjectIdentifierProperty" Association="ZEP_ODATA_FIORI_SCANNING_SRV.ObjectIdentifierObjectIdentifierProperty" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ObjectIdentifierSet" Role="FromRole_ObjectIdentifierObjectIdentifierProperty"/>
+                    <End EntitySet="ObjectIdentifierPropertySet" Role="ToRole_ObjectIdentifierObjectIdentifierProperty"/>
+                </AssociationSet>
+                <AssociationSet Name="ConsumptionConsumptionModeSet" Association="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionConsumptionMode" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ConsumptionSet" Role="FromRole_ConsumptionConsumptionMode"/>
+                    <End EntitySet="ConsumptionModeSet" Role="ToRole_ConsumptionConsumptionMode"/>
+                </AssociationSet>
+                <AssociationSet Name="ConsumptionItemPlantSet" Association="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItemPlant" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ConsumptionItemSet" Role="FromRole_ConsumptionItemPlant"/>
+                    <End EntitySet="PlantSet" Role="ToRole_ConsumptionItemPlant"/>
+                </AssociationSet>
+                <AssociationSet Name="ConsumptionItemStorageLocationSet" Association="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItemStorageLocation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ConsumptionItemSet" Role="FromRole_ConsumptionItemStorageLocation"/>
+                    <End EntitySet="StorageLocationSet" Role="ToRole_ConsumptionItemStorageLocation"/>
+                </AssociationSet>
+                <AssociationSet Name="ConsumptionConsumptionItemSet" Association="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionConsumptionItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ConsumptionSet" Role="FromRole_ConsumptionConsumptionItem"/>
+                    <End EntitySet="ConsumptionItemSet" Role="ToRole_ConsumptionConsumptionItem"/>
+                </AssociationSet>
+                <AssociationSet Name="ConsumptionItemMaterialSet" Association="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItemMaterial" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ConsumptionItemSet" Role="FromRole_ConsumptionItemMaterial"/>
+                    <End EntitySet="MaterialSet" Role="ToRole_ConsumptionItemMaterial"/>
+                </AssociationSet>
+                <AssociationSet Name="ConsumptionItemConsumptionItemOperationS" Association="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionItemConsumptionItemOperation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ConsumptionItemSet" Role="FromRole_ConsumptionItemConsumptionItemOperation"/>
+                    <End EntitySet="ConsumptionItemOperationSet" Role="ToRole_ConsumptionItemConsumptionItemOperation"/>
+                </AssociationSet>
+                <AssociationSet Name="ConsumptionConsumptionStatusSet" Association="ZEP_ODATA_FIORI_SCANNING_SRV.ConsumptionConsumptionStatus" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ConsumptionSet" Role="FromRole_ConsumptionConsumptionStatus"/>
+                    <End EntitySet="ConsumptionStatusSet" Role="ToRole_ConsumptionConsumptionStatus"/>
+                </AssociationSet>
+            </EntityContainer>
+            <atom:link
+                xmlns:atom="http://www.w3.org/2005/Atom" rel="self" href="./sap/ZEP_ODATA_FIORI_SCANNING_SRV/$metadata"/>
+                <atom:link
+                    xmlns:atom="http://www.w3.org/2005/Atom" rel="latest-version" href="./sap/ZEP_ODATA_FIORI_SCANNING_SRV/$metadata"/>
+                </Schema>
+            </edmx:DataServices>
+        </edmx:Edmx>
